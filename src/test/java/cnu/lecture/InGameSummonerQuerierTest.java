@@ -54,6 +54,32 @@ public class InGameSummonerQuerierTest {
         final String expectedGameKey = "4/bl4DC8HBir8w7bGHq6hvuHluBd+3xM";
         THEN: {
             assertThat(actualGameKey, is(expectedGameKey));
+            verify(spy, times(1)).getGameInfoFromHttp(anyString());
+            verify(spy, times(1)).getSummonerIdFromHttp(anyString());
+            verify(spy, times(1)).printInGmaePlayer(any());
         }
+    }
+    
+    @Test
+    public void shouldQuerierReportMoreThan5Summoners() {
+    	final InGameInfo gameInfo;
+    	GIVEN: {
+	    	gameInfo = mock(InGameInfo.class);
+	        Observer observer = mock(Observer.class);
+	        when(gameInfo.getObservers()).thenReturn(observer);
+	        Participant[] participants = new Participant[4];
+	        for(int i=0; i<participants.length; ++i)
+	        	participants[i] = mock(Participant.class);
+	        when(gameInfo.getParticipants()).thenReturn(participants);
+        }
+    	
+    	final boolean actualValue;
+    	WHEN: {
+        	actualValue = querier.isMax(gameInfo);
+    	}
+    	
+    	THEN: {
+    		assertThat(true, is(actualValue));
+    	}
     }
 }

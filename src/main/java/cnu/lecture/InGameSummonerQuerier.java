@@ -91,4 +91,11 @@ public class InGameSummonerQuerier {
     private StringBuilder mergeWithApiKey(StringBuilder builder) {
         return builder.append("?api_key=").append(apiKey);
     }
+    
+    public boolean isMax(InGameInfo gameInfo){
+    	if(gameInfo.getParticipants().length>=4)
+			return true;
+		else
+			return false;
+    }
 }
