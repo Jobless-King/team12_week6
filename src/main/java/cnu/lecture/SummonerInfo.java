@@ -13,4 +13,5 @@ public class SummonerInfo {
 
     @Getter @Setter
     private String name;
+
 }
