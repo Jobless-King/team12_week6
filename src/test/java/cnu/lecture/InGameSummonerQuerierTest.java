@@ -65,8 +65,6 @@ public class InGameSummonerQuerierTest {
     	final InGameInfo gameInfo;
     	GIVEN: {
 	    	gameInfo = mock(InGameInfo.class);
-	        Observer observer = mock(Observer.class);
-	        when(gameInfo.getObservers()).thenReturn(observer);
 	        Participant[] participants = new Participant[4];
 	        for(int i=0; i<participants.length; ++i)
 	        	participants[i] = mock(Participant.class);
@@ -78,8 +76,9 @@ public class InGameSummonerQuerierTest {
         	actualValue = querier.isMax(gameInfo);
     	}
     	
+    	final boolean expectedValue = true;
     	THEN: {
-    		assertThat(true, is(actualValue));
+    		assertThat(expectedValue, is(actualValue));
     	}
     }
 }
