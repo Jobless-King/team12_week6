@@ -10,11 +10,13 @@ public class InGameInfo {
     public static class Observer {
         @Getter @Setter
         private String encryptionKey;
+
     }
 
     public static class Participant {
         @Getter @Setter
         private String summonerName;
+
     }
 
     @Getter @Setter
